@@ -24,7 +24,7 @@ namespace Web_API_Basic_Authentication.Controllers
         {
             _logger = logger;
         }
-
+        
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

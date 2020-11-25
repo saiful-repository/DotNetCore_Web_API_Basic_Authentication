@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Web_API_Basic_Authentication.Model;
 
 namespace Web_API_Basic_Authentication.Middleware
@@ -45,13 +47,15 @@ namespace Web_API_Basic_Authentication.Middleware
                 }
                 else
                 {
-                    httpContext.Response.StatusCode = 401;
+                    httpContext.Response.StatusCode = 401;               
+                    await httpContext.Response.WriteAsync("Uer ID / Password is invalid");
                     return;
                 }
             }
             else
             {
                 httpContext.Response.StatusCode = 401;
+                await httpContext.Response.WriteAsync("Uer ID / Password is invalid");
                 return;
             }
         }
